@@ -12,10 +12,12 @@ namespace ProgramTester
         static void Main(string[] args)
         {
             Tester tester = new Tester();
+            int nTests = 0;
             while (true)
             {
-                Console.ReadLine();
-                tester.MakeAndRunTest();
+                Console.WriteLine("Enter number of tests to do: ");
+                nTests = int.Parse(Console.ReadLine());
+                while (nTests-- > 0) tester.MakeAndRunTest(false);
             }
         }
     }

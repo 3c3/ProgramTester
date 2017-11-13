@@ -14,7 +14,7 @@ namespace ProgramTester
         private string program1 = "task7.exe";
         private string program2 = "pixel.exe";
 
-        public void MakeAndRunTest()
+        public void MakeAndRunTest(bool showInput)
         {
             Random random = new Random();
             StringBuilder test = new StringBuilder();
@@ -40,8 +40,11 @@ namespace ProgramTester
             test.AppendFormat("{0} {1}\n", x.ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
 
             string testString = test.ToString();
-            Console.WriteLine("Test:");
-            Console.WriteLine(testString);
+            if (showInput)
+            {
+                Console.WriteLine("Test:");
+                Console.WriteLine(testString);
+            }            
             RunTest(testString);
         }
 
