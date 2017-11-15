@@ -42,9 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoolTriangleGenerator.cs" />
     <Compile Include="Executable.cs" />
+    <Compile Include="ITestGenerator.cs" />
+    <Compile Include="JewTriangleGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomTriangleGenerator.cs" />
     <Compile Include="Tester.cs" />
   </ItemGroup>
   <ItemGroup>

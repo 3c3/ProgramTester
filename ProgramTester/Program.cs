@@ -12,6 +12,11 @@ namespace ProgramTester
         static void Main(string[] args)
         {
             Tester tester = new Tester();
+
+            tester.generators.Add(new CoolTriangleGenerator());
+            tester.generators.Add(new RandomTriangleGenerator());
+            tester.generators.Add(new JewTriangleGenerator());
+
             int nTests = 0;
             while (true)
             {
