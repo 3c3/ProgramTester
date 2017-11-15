@@ -15,6 +15,8 @@ namespace ProgramTester
         private bool breakOnBad;
         private bool showBadTests;
 
+        private uint testCounter;
+
         public Tester(string subject, string checker, bool showBad, bool breakOnBad)
         {
             this.subjectFileName = subject;
@@ -45,11 +47,11 @@ namespace ProgramTester
 
             checker.Start();
             checker.Feed(testData);
-            string expectedString = checker.GetOutput();
+            string expectedString = checker.GetOutput().Trim(new char[] { '\n', '\r', ' ' });
 
             subject.Start();
             subject.Feed(testData);
-            string subjectString = subject.GetOutput();
+            string subjectString = subject.GetOutput().Trim(new char[] { '\n', '\r', ' ' });
 
             double expected, real;
             if (double.TryParse(expectedString.Substring(0, expectedString.Length-1).Replace('.', ','), out expected) && 
@@ -64,7 +66,8 @@ namespace ProgramTester
                 {
                     ConsoleColor orig = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Expected: {1:F3}, got: {0:F3}, diff: {2:F3} ({3:F0}%)",
+                    Console.Write("{0}. ", testCounter++);
+                    Console.WriteLine("еxpected: {1:F3}, got: {0:F3}, diff: {2:F3} ({3:F0}%)",
                     real, expected, diff, pDiff);
                     Console.ForegroundColor = orig;
 
@@ -84,6 +87,7 @@ namespace ProgramTester
                 {
                     ConsoleColor orig = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("{0}. ", testCounter++);
                     Console.WriteLine("ok({0:F0}%)\t\t{1:F3} / {2:F3}", pDiff, expected, real);
                     Console.ForegroundColor = orig;
                 }
@@ -95,6 +99,7 @@ namespace ProgramTester
                 {
                     ConsoleColor orig = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("{0}. ", testCounter++);
                     Console.WriteLine("ok\t{0} / {1}", expectedString, subjectString);
                     Console.ForegroundColor = orig;
                 }
@@ -102,7 +107,8 @@ namespace ProgramTester
                 {
                     ConsoleColor orig = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("fail\t{0} / {1}", expectedString.Trim(new char[] {'\n','\r' }), subjectString.Trim(new char[] {'\n','\r' }));
+                    Console.Write("{0}. ", testCounter++);
+                    Console.WriteLine("fail\t{0} / {1}", expectedString, subjectString);
                     Console.ForegroundColor = orig;
 
                     if (showBadTests)
