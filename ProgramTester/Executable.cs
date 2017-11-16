@@ -49,7 +49,11 @@ namespace ProgramTester
         {
             process.WaitForExit();
             string result = output.ReadToEnd();
-            return result;
+
+            int newLineIdx = result.LastIndexOf('\n', result.Length-2);
+            if (newLineIdx == -1) return result;
+
+            return result.Substring(newLineIdx + 1);
         }
     }
 }
