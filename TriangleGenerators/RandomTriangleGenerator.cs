@@ -1,24 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TestGen;
 
-namespace ProgramTester
+namespace TriangleGenerators
 {
     class RandomTriangleGenerator : ITestGenerator
     {
         private Random random = new Random();
 
-        public string MakeData()
+        public string DisplayName
+        {
+            get { return "RandomTriangleGenerator"; }
+        }
+
+        public string Description
+        {
+            get { return "Makes random triangles"; }
+        }
+
+        public string MakeTest()
         {
             Random random = new Random();
             StringBuilder test = new StringBuilder();
 
             AddTriangle(test);
             AddTriangle(test);
-            
+
             return test.ToString();
         }
 

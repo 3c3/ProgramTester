@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TestGen;
 
-namespace ProgramTester
+namespace TriangleGenerators
 {
-    public class JewTriangleGenerator : ITestGenerator
+    public class CoolTriangleGenerator : ITestGenerator
     {
         private static double maxLength = 20;
 
-        public string MakeData()
+        public string DisplayName
+        {
+            get { return "CoolTriangleGenerator"; }
+        }
+
+        public string Description
+        {
+            get { return "Makes equiliteral triangles that are upright"; }
+        }
+
+        public string MakeTest()
         {
             Random random = new Random();
             StringBuilder test = new StringBuilder();
@@ -33,7 +41,7 @@ namespace ProgramTester
             test.AppendFormat("{0} {1}\n", x.ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
             test.AppendFormat("{0} {1}\n", (x + length).ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
             x += length / 2.0;
-            y -= Math.Sqrt(3) * length / 2.0; // flip the second triangle
+            y += Math.Sqrt(3) * length / 2.0;
             test.AppendFormat("{0} {1}\n", x.ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
 
             return test.ToString();

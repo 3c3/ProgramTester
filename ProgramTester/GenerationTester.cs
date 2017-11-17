@@ -4,10 +4,15 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestGen;
 
 namespace ProgramTester
 {
-    public class Tester
+    /// <summary>
+    /// Tests one program (subject) with another (checker)
+    /// Tests are supplied by test generators
+    /// </summary>
+    public class GenerationTester
     {
         private string subjectFileName;
         private string checkerFileName;
@@ -17,7 +22,7 @@ namespace ProgramTester
 
         private uint testCounter;
 
-        public Tester(string subject, string checker, bool showBad, bool breakOnBad)
+        public GenerationTester(string subject, string checker, bool showBad, bool breakOnBad)
         {
             this.subjectFileName = subject;
             this.checkerFileName = checker;
@@ -30,7 +35,7 @@ namespace ProgramTester
 
         public void MakeAndRunTest(bool showInput)
         {
-            string testString = generators[random.Next(generators.Count)].MakeData();
+            string testString = generators[random.Next(generators.Count)].MakeTest();
 
             if (showInput)
             {

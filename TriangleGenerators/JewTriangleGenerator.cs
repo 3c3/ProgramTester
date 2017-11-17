@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TestGen;
 
-namespace ProgramTester
+namespace TriangleGenerators
 {
-    public class CoolTriangleGenerator : ITestGenerator
+    public class JewTriangleGenerator : ITestGenerator
     {
         private static double maxLength = 20;
 
-        public string MakeData()
+        public string DisplayName
+        {
+            get { return "JewTriangleGenerator"; }
+        }
+
+        public string Description
+        {
+            get { return "Makes triangles that could form a David star"; }
+        }
+
+        public string MakeTest()
         {
             Random random = new Random();
             StringBuilder test = new StringBuilder();
@@ -33,7 +42,7 @@ namespace ProgramTester
             test.AppendFormat("{0} {1}\n", x.ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
             test.AppendFormat("{0} {1}\n", (x + length).ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
             x += length / 2.0;
-            y += Math.Sqrt(3) * length / 2.0;
+            y -= Math.Sqrt(3) * length / 2.0; // flip the second triangle
             test.AppendFormat("{0} {1}\n", x.ToString(CultureInfo.InvariantCulture), y.ToString(CultureInfo.InvariantCulture));
 
             return test.ToString();

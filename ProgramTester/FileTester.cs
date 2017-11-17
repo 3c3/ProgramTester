@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProgramTester
 {
-    public interface ITestGenerator
+    /// <summary>
+    /// Tests one program with input and output files
+    /// </summary>
+    public class FileTester
     {
-        string MakeData();
     }
 }
